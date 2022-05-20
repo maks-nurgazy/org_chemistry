@@ -43,10 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SfPdfViewer.network(
-            'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
-            controller: _pdfViewerController,
-            key: _pdfViewerStateKey),
+        body: SfPdfViewer.asset('assets/books/organic-chemistry.pdf',
+            controller: _pdfViewerController, key: _pdfViewerStateKey),
         appBar: AppBar(
           actions: <Widget>[
             IconButton(
