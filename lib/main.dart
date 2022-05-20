@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:org_chemistry/model/menu.dart';
+import 'package:org_chemistry/screen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,69 +17,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  late PdfViewerController _pdfViewerController;
-
-  final GlobalKey<SfPdfViewerState> _pdfViewerStateKey = GlobalKey();
-  @override
-  void initState() {
-    _pdfViewerController = PdfViewerController();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SfPdfViewer.asset('assets/books/organic-chemistry.pdf',
-            onDocumentLoaded: (PdfDocumentLoadedDetails details) {},
-            controller: _pdfViewerController,
-            key: _pdfViewerStateKey),
-        appBar: AppBar(
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                _pdfViewerController.jumpToPage(370);
-              },
-              icon: const Icon(
-                Icons.bookmark,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                _pdfViewerController.jumpToPage(5);
-              },
-              icon: const Icon(
-                Icons.arrow_drop_down_circle,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                _pdfViewerController.zoomLevel = 1.25;
-              },
-              icon: const Icon(
-                Icons.zoom_in,
-                color: Colors.white,
-              ),
-            )
-          ],
-        ),
+      home: HomeScreen(
+        menus: [
+          Menu(name: "Темалар", image: 'assets/images/book.png'),
+          Menu(name: "Лабораториялык иштер", image: 'assets/images/book.png'),
+          Menu(name: "Терминдер", image: 'assets/images/book.png'),
+          Menu(name: "Сынактар", image: 'assets/images/book.png'),
+          Menu(name: "Эскертмелер", image: 'assets/images/book.png'),
+          Menu(name: "Шартту белгилер", image: 'assets/images/book.png'),
+        ],
       ),
     );
   }
