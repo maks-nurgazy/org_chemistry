@@ -32,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late PdfViewerController _pdfViewerController;
+
   final GlobalKey<SfPdfViewerState> _pdfViewerStateKey = GlobalKey();
   @override
   void initState() {
@@ -44,12 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         body: SfPdfViewer.asset('assets/books/organic-chemistry.pdf',
-            controller: _pdfViewerController, key: _pdfViewerStateKey),
+            onDocumentLoaded: (PdfDocumentLoadedDetails details) {},
+            controller: _pdfViewerController,
+            key: _pdfViewerStateKey),
         appBar: AppBar(
           actions: <Widget>[
             IconButton(
               onPressed: () {
-                _pdfViewerStateKey.currentState!.openBookmarkView();
+                _pdfViewerController.jumpToPage(370);
               },
               icon: const Icon(
                 Icons.bookmark,
